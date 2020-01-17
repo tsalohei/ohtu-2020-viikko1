@@ -33,8 +33,16 @@ jar {
     }
 }
 
+
 apply plugin: "jacoco"
 
 // Define the main class for the application
 mainClassName = 'ohtu.ohtuvarasto.Main'
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
 
