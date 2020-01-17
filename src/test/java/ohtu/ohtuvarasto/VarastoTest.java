@@ -24,7 +24,9 @@ public class VarastoTest {
     public void toStringMetodiToimii() {
         String str1 = "saldo = 0.0, vielä tilaa 10.0";
         String str2 = varasto.toString();
-        assertEquals(str1, str2);
+        //assertEquals(str1, str2);
+        //TESTIMUUTOS
+        assertEquals(1,2);
     }
     
     @Test
