@@ -21,6 +21,73 @@ public class VarastoTest {
     }
 
     @Test
+    public void toStringMetodiToimii() {
+        String str1 = "saldo = 0.0, vielä tilaa 10.0";
+        String str2 = varasto.toString();
+        assertEquals(str1, str2);
+    }
+    
+    @Test
+    public void varastostaYritetaanOttaaEnemmanMitaSaldoa() {
+        varasto.lisaaVarastoon(7);
+        assertEquals(7, varasto.otaVarastosta(300), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void varastostaYritetaanOttaaNegatiivinenMaara() {
+        varasto.otaVarastosta(-3);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void varastoonLaitetaanLiikaaTavaraa() {
+        varasto.lisaaVarastoon(12);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void varastoonYritetaanLisataNegatiivinenMaara() {
+        varasto.lisaaVarastoon(-3);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void kontruktoriLuoVarastonJonkaAlkusaldoIsompiKuinTilavuus() {
+        Varasto testiVarasto = new Varasto(2, 3);
+        assertEquals(2, testiVarasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(2, testiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoVarastonJonkaTilavuusPosJaAlkusaldoNeg() {
+        Varasto testiVarasto = new Varasto(2,-1);
+        assertEquals(2, testiVarasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, testiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test //luotu varasto tilavuus 0, alkusaldo -2 ei ole kauhean järkevä
+    public void konstruktoriLuoVarastonJonkaTilavuusNegJaAlkusaldoPos() {
+        Varasto testiVarasto = new Varasto(-2,1);
+        assertEquals(0, testiVarasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(-2, testiVarasto.getSaldo(), vertailuTarkkuus);
+        
+    }
+    
+    @Test
+    public void konstruktoriLuoVarastonJonkaTilavuusJaAlkusaldoJarkevat() {
+        Varasto testiVarasto = new Varasto(2,1);
+        assertEquals(2, testiVarasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(1, testiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoVarastonJonkaTilavuusNegatiivinen() {
+        Varasto testiVarasto = new Varasto(-2);
+        assertEquals(0, testiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    //*****
+    
+    @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
